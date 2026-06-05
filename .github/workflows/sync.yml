@@ -1,20 +1,31 @@
 name: Sync to Hugging Face Hub
+
 on:
   push:
     branches: [main]
+  # Allows you to manually trigger this workflow from the Actions tab
   workflow_dispatch:
 
 jobs:
-  sync-to-hub:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository assets
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          lfs: true
 
-      - name: Push to hub
+      - name: Set up Python environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install official Hugging Face CLI tool
+        run: pip install huggingface_hub
+
+      - name: Authenticate and upload project space via dedicated tunnel
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          git push --force https://oauth2:$HF_TOKEN@huggingface.co/spaces/catalyst-intelligence/ClariFood main
+          huggingface-cli login --token $HF_TOKEN
+          huggingface-cli upload-space catalyst-intelligence/ClariFood . --use-auth-token
