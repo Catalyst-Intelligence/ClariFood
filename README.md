@@ -2,7 +2,7 @@
 title: ClariFood
 emoji: 🥑
 colorFrom: green
-colorTo: lime
+colorTo: yellow   # "colorTo" must be one of [red, yellow, green, blue, indigo, purple, pink, gray]
 sdk: docker
 app_port: 8501
 ---
