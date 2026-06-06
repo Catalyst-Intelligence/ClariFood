@@ -27,5 +27,5 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          huggingface-cli login --token $HF_TOKEN
-          huggingface-cli upload-space catalyst-intelligence/ClariFood . --use-auth-token
+          hf auth login --token $HF_TOKEN
+          hf upload-space catalyst-intelligence/ClariFood . --repo-type space
