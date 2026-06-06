@@ -28,4 +28,4 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           hf auth login --token $HF_TOKEN
-          hf upload-space catalyst-intelligence/ClariFood . --repo-type space
+          hf upload catalyst-intelligence/ClariFood . --repo-type space
