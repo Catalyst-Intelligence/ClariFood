@@ -8,9 +8,9 @@ from PIL import Image
 client = genai.Client()
 
 # Force full viewport usage to widen the camera layout frame
-st.set_page_config(page_title="NutriScan AI Pro", page_icon="🛡️", layout="wide")
+st.set_page_config(page_title="ClariFood", page_icon="🛡️", layout="wide")
 
-st.title("🛡️ NutriScan AI: Conversational Diet Intelligence")
+st.title("🛡️ ClariFood: Conversational Diet Intelligence")
 st.write("A production-hardened hybrid edge/cloud system with dynamic session memory.")
 
 st.markdown("---")
