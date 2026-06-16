@@ -2,7 +2,7 @@ name: Sync to Hugging Face Hub
 
 on:
   push:
-    branches: [main]
+    branches: ["main","staging"]
   # Allows you to manually trigger this workflow from the Actions tab
   workflow_dispatch:
 
@@ -26,6 +26,8 @@ jobs:
       - name: Authenticate and upload project space via dedicated tunnel
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          # Traffic Controller: If the branch is main, use production. Otherwise, use staging.
+          HF_SPACE: ${{ github.ref_name == 'main' && 'catalyst-intelligence/ClariFood' || 'catalyst-intelligence/catalyst-intelligence/Staging-ClariFood' }}
         run: |
           hf auth login --token $HF_TOKEN
-          hf upload catalyst-intelligence/ClariFood . --repo-type space
+          hf upload $HF_SPACE . --repo-type space
